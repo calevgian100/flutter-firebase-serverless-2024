@@ -40,6 +40,7 @@ class FirestoreService {
     await _firestore.collection('tasks').doc(id).delete();
   }
 
+  // Obtain a single task
   static Future<Map<String, dynamic>?> getTask(String id) async {
     final task = await _firestore.collection('tasks').doc(id).get();
     return task.data();
