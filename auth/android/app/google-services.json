@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "509258112186",
+    "project_id": "todo-do-app-serverless",
+    "storage_bucket": "todo-do-app-serverless.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:509258112186:android:faaedc4530fb93d13db683",
+        "android_client_info": {
+          "package_name": "com.todo.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA0ekMObEG5kA5PoJbFHZUiCe72GKt4IqQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
