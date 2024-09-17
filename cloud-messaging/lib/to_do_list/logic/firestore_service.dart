@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:todo_do_app/auth/logic/firebase_auth_service.dart';
+import 'package:todo_do_app/messaging/logic/messaging_service.dart';
 import 'package:todo_do_app/storage/logic/firebase_storage_service.dart';
 
 class FirestoreService {
@@ -82,6 +83,19 @@ class FirestoreService {
   }) async {
     await _firestore.collection('tasks').doc(id).update({
       'imageUrl': imageUrl,
+    });
+  }
+
+  static Future<void> updateRegistrationToken(String userId) async {
+    final token = await MessagingService.getToken();
+    await _firestore.collection('users').doc(userId).set({
+      'fcmToken': token,
+    }, SetOptions(merge: true));
+  }
+
+  static Future<void> deleteRegistrationToken(String userId) async {
+    await _firestore.collection('users').doc(userId).update({
+      'fcmToken': '',
     });
   }
 }

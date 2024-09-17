@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:todo_do_app/storage/logic/firebase_storage_service.dart';
+import 'package:todo_do_app/to_do_list/logic/firestore_service.dart';
 
 class FirebaseAuthService {
   static final _auth = FirebaseAuth.instance;
@@ -32,6 +33,7 @@ class FirebaseAuthService {
     try {
       final userCredential = await _auth.signInWithEmailAndPassword(
           email: email, password: password);
+      await FirestoreService.updateRegistrationToken(userCredential.user!.uid);
       return userCredential.user;
     } catch (e) {
       print(e);
@@ -44,6 +46,7 @@ class FirebaseAuthService {
   }
 
   static Future<void> logout() async {
+    await FirestoreService.deleteRegistrationToken(_auth.currentUser!.uid);
     await _auth.signOut();
   }
 
