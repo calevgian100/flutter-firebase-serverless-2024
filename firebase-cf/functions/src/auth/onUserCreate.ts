@@ -5,11 +5,14 @@ const onUserCreate = auth.user().onCreate(async (user) => {
   const { uid, email } = user;
   const db = admin.firestore();
   const userRef = db.collection('users').doc(uid);
-  await userRef.set({
-    id: uid,
-    email,
-    numberOfTasks: 0,
-  });
+  await userRef.set(
+    {
+      id: uid,
+      email,
+      numberOfTasks: 0,
+    },
+    { merge: true }
+  );
 });
 
 export default onUserCreate;
