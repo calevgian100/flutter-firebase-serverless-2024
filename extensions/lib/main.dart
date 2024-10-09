@@ -20,6 +20,7 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  await Firebase.initializeApp();
   await MessagingService.init();
   runApp(MaterialApp(
     title: 'Flutter Demo',
